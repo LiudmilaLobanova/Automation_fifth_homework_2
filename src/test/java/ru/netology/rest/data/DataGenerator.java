@@ -6,11 +6,12 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import lombok.Value;
 import com.github.javafaker.Faker;
+
 import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
 
-public class DataGenerator{
+public class DataGenerator {
 
     private static final RequestSpecification requestSpec = new RequestSpecBuilder()
             .setBaseUri("http://localhost")
@@ -24,7 +25,7 @@ public class DataGenerator{
     private DataGenerator() {
     }
 
-    private static void sendRequest(RegistrationDto user){
+    private static void sendRequest(RegistrationDto user) {
         given()
                 .spec(requestSpec)
                 .body(user)
@@ -34,18 +35,18 @@ public class DataGenerator{
                 .statusCode(200);
     }
 
-    public static String getRandomLogin(){
+    public static String getRandomLogin() {
         String login = faker.name().username();
         return login;
     }
 
-    public static String getRandomPassword(){
+    public static String getRandomPassword() {
         String password = faker.internet().password();
         return password;
     }
 
     public static class Registration {
-        private Registration(){
+        private Registration() {
         }
 
         public static RegistrationDto getUser(String status) {
@@ -68,7 +69,6 @@ public class DataGenerator{
         String password;
         String status;
     }
-
 
 
 }
